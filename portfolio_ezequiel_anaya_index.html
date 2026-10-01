@@ -1,0 +1,595 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio profesional de Ezequiel Anaya - Técnico en Programación.">
+  <title>Ezequiel Anaya | Portfolio</title>
+  <style>
+/* ================================
+   PORTFOLIO - EZEQUIEL ANAYA
+   Hoja de estilos principal
+   ================================ */
+
+:root {
+  --bg: #f5f5f3;
+  --surface: #ffffff;
+  --text: #151515;
+  --muted: #666;
+  --line: #ddddda;
+  --dark: #101010;
+  --accent: #e63946;
+  --accent-dark: #b8202c;
+  --max: 1120px;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+a { color: inherit; text-decoration: none; }
+
+.container {
+  width: min(92%, var(--max));
+  margin: 0 auto;
+}
+
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(245,245,243,.94);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid var(--line);
+}
+
+.nav {
+  min-height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 900;
+  letter-spacing: -1px;
+}
+
+.logo span { color: var(--accent); }
+
+.nav-links {
+  display: flex;
+  gap: 28px;
+  list-style: none;
+  font-size: .9rem;
+  font-weight: 700;
+}
+
+.nav-links a:hover { color: var(--accent); }
+
+.menu-btn {
+  display: none;
+  border: 0;
+  background: transparent;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.hero {
+  min-height: calc(100vh - 72px);
+  display: grid;
+  align-items: center;
+  padding: 80px 0;
+}
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.2fr .8fr;
+  gap: 70px;
+  align-items: center;
+}
+
+.eyebrow, .section-tag, .project-type {
+  color: var(--accent);
+  font-size: .76rem;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+h1 {
+  margin: 18px 0;
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  line-height: .92;
+  letter-spacing: -5px;
+}
+
+h1 span { color: var(--accent); }
+
+.hero-text {
+  max-width: 650px;
+  color: var(--muted);
+  font-size: 1.08rem;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.btn {
+  padding: 13px 20px;
+  border: 1px solid var(--text);
+  font-weight: 800;
+  transition: .2s;
+}
+
+.btn.primary { background: var(--text); color: white; }
+.btn.primary:hover { background: var(--accent); border-color: var(--accent); }
+.btn.secondary:hover { background: var(--text); color: white; }
+
+.code-window {
+  background: var(--dark);
+  color: #eee;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 20px 20px 0 var(--accent);
+  overflow: auto;
+}
+
+.dots { display: flex; gap: 6px; margin-bottom: 20px; }
+.dots i { width: 9px; height: 9px; border-radius: 50%; background: #555; }
+
+.code-window pre {
+  font-family: Consolas, monospace;
+  font-size: .9rem;
+  line-height: 1.8;
+}
+
+.section { padding: 110px 0; }
+.section h2 {
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 1;
+  letter-spacing: -2px;
+  margin: 15px 0 45px;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 80px;
+}
+
+.about-text { color: var(--muted); font-size: 1.05rem; }
+.about-text p + p { margin-top: 18px; }
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 18px;
+  margin-top: 35px;
+}
+
+.info-grid div {
+  padding-top: 15px;
+  border-top: 1px solid var(--line);
+}
+
+.info-grid strong, .info-grid span { display: block; }
+.info-grid strong { color: var(--text); margin-bottom: 4px; }
+.info-grid span { font-size: .9rem; }
+
+.dark-section { background: var(--dark); color: white; }
+.dark-section .section-tag { color: #ff6570; }
+
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1px;
+  background: #333;
+  border: 1px solid #333;
+}
+
+.skill-card {
+  background: var(--dark);
+  min-height: 180px;
+  padding: 25px;
+  transition: .2s;
+}
+
+.skill-card:hover { background: #1b1b1b; }
+.skill-card span { color: #777; font-size: .8rem; }
+.skill-card h3 { margin: 35px 0 8px; font-size: 1.25rem; }
+.skill-card p { color: #aaa; font-size: .9rem; }
+
+.projects {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.project {
+  border: 1px solid var(--line);
+  background: var(--surface);
+  padding: 30px;
+  min-height: 330px;
+  position: relative;
+}
+
+.project.featured { grid-column: span 2; }
+
+.project-number {
+  position: absolute;
+  right: 25px;
+  top: 25px;
+  color: #bbb;
+  font-weight: 900;
+  font-size: .9rem;
+}
+
+.project-content { max-width: 700px; }
+.project h3 { font-size: 1.8rem; margin: 15px 0; }
+.project p { color: var(--muted); max-width: 680px; }
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+  margin-top: 22px;
+}
+
+.tags span {
+  border: 1px solid var(--line);
+  padding: 5px 9px;
+  font-size: .75rem;
+  font-weight: 700;
+}
+
+.project-actions { margin-top: 25px; }
+.text-link { font-weight: 900; border-bottom: 2px solid var(--accent); }
+.disabled-link { opacity: .55; cursor: default; }
+
+.evidence {
+  margin-top: 60px;
+  padding: 35px;
+  background: #171717;
+  color: white;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+}
+
+.evidence h3 { font-size: 2rem; margin: 10px 0; }
+.evidence p:not(.section-tag) { color: #aaa; }
+
+.diagram-placeholder {
+  min-height: 220px;
+  border: 1px dashed #555;
+  display: grid;
+  place-items: center;
+  position: relative;
+  padding: 25px;
+}
+
+.diagram-placeholder > span {
+  position: absolute;
+  top: 12px;
+  left: 15px;
+  color: #888;
+  font-size: .7rem;
+  letter-spacing: 2px;
+}
+
+.db-box {
+  border: 1px solid #888;
+  padding: 15px 25px;
+  text-align: center;
+  font-weight: 800;
+}
+
+.db-box small { color: #999; font-weight: normal; }
+
+.db-line { width: 2px; height: 20px; background: var(--accent); }
+
+.light { background: #e9e9e6; }
+
+.objective { max-width: 780px; }
+.objective h2 { margin-bottom: 20px; }
+.objective p { color: var(--muted); font-size: 1.05rem; }
+
+.contact-section { background: var(--accent); color: white; }
+.contact-section .section-tag { color: white; }
+.contact {
+  display: flex;
+  align-items: end;
+  justify-content: space-between;
+  gap: 40px;
+}
+.contact h2 { margin-bottom: 15px; }
+.contact p { opacity: .85; }
+
+.contact-links {
+  display: flex;
+  flex-direction: column;
+  min-width: 220px;
+}
+.contact-links a {
+  padding: 15px 0;
+  border-bottom: 1px solid rgba(255,255,255,.4);
+  font-weight: 800;
+}
+.contact-links a:hover { padding-left: 8px; }
+
+.footer { background: var(--dark); color: #888; padding: 25px 0; font-size: .8rem; }
+.footer-content { display: flex; justify-content: space-between; gap: 20px; }
+
+@media (max-width: 850px) {
+  .hero-grid, .two-col, .evidence { grid-template-columns: 1fr; }
+  .hero { padding: 60px 0; }
+  .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  .projects { grid-template-columns: 1fr; }
+  .project.featured { grid-column: auto; }
+  .contact { align-items: start; flex-direction: column; }
+}
+
+@media (max-width: 650px) {
+  .menu-btn { display: block; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    left: 4%;
+    right: 4%;
+    top: 65px;
+    flex-direction: column;
+    padding: 20px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+  }
+  .nav-links.active { display: flex; }
+  h1 { letter-spacing: -3px; }
+  .skills-grid { grid-template-columns: 1fr; }
+  .info-grid { grid-template-columns: 1fr; }
+  .footer-content { flex-direction: column; }
+}
+
+  </style>
+</head>
+<body>
+  <header class="header">
+    <nav class="nav container">
+      <a class="logo" href="#inicio">EA<span>.</span></a>
+      <button class="menu-btn" id="menuBtn" aria-label="Abrir menú">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#inicio">Inicio</a></li>
+        <li><a href="#sobre-mi">Sobre mí</a></li>
+        <li><a href="#habilidades">Habilidades</a></li>
+        <li><a href="#proyectos">Proyectos</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section id="inicio" class="hero">
+      <div class="container hero-grid">
+        <div>
+          <p class="eyebrow">TÉCNICO EN PROGRAMACIÓN · IPET 247</p>
+          <h1>Hola, soy <span>Ezequiel Anaya</span>.</h1>
+          <p class="hero-text">
+            Estudiante de programación orientado al desarrollo web, bases de datos
+            y creación de soluciones digitales. Este portfolio reúne proyectos
+            realizados durante mi formación técnica y demuestra mis conocimientos
+            mediante trabajos concretos.
+          </p>
+          <div class="hero-buttons">
+            <a class="btn primary" href="#proyectos">Ver proyectos</a>
+            <a class="btn secondary" href="#contacto">Contacto</a>
+          </div>
+        </div>
+        <div class="hero-card">
+          <div class="code-window">
+            <div class="dots"><i></i><i></i><i></i></div>
+            <pre><code>const estudiante = {
+  nombre: "Ezequiel Anaya",
+  perfil: "Técnico en Programación",
+  foco: ["Web", "Backend", "BD"],
+  aprendizaje: true
+};</code></pre>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="sobre-mi" class="section">
+      <div class="container two-col">
+        <div>
+          <p class="section-tag">01 · SOBRE MÍ</p>
+          <h2>Construyendo experiencia a través de proyectos.</h2>
+        </div>
+        <div class="about-text">
+          <p>
+            Soy estudiante de 7° I de la orientación Programación en IPET 247.
+            Durante mi formación desarrollé proyectos relacionados con desarrollo
+            web, programación, bases de datos y documentación técnica.
+          </p>
+          <p>
+            Mi objetivo a corto plazo es continuar fortaleciendo mis conocimientos
+            para incorporarme al ámbito laboral tecnológico, especialmente en
+            tareas relacionadas con desarrollo web, administración de sitios,
+            bases de datos y soluciones de software.
+          </p>
+          <div class="info-grid">
+            <div><strong>Formación</strong><span>IPET 247 · Programación</span></div>
+            <div><strong>Curso</strong><span>7° I</span></div>
+            <div><strong>Ubicación</strong><span>Córdoba, Argentina</span></div>
+            <div><strong>Modalidad</strong><span>Proyectos académicos y personales</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="habilidades" class="section dark-section">
+      <div class="container">
+        <p class="section-tag">02 · STACK TECNOLÓGICO</p>
+        <h2>Tecnologías y herramientas</h2>
+        <div class="skills-grid">
+          <article class="skill-card"><span>01</span><h3>HTML5</h3><p>Estructuración semántica de sitios web.</p></article>
+          <article class="skill-card"><span>02</span><h3>CSS3</h3><p>Diseño, responsive design y organización visual.</p></article>
+          <article class="skill-card"><span>03</span><h3>JavaScript</h3><p>Interactividad y lógica del lado del cliente.</p></article>
+          <article class="skill-card"><span>04</span><h3>Python</h3><p>Programación y desarrollo de aplicaciones.</p></article>
+          <article class="skill-card"><span>05</span><h3>SQL / Oracle</h3><p>Modelado, consultas y gestión de bases de datos.</p></article>
+          <article class="skill-card"><span>06</span><h3>Git / GitHub</h3><p>Control de versiones, repositorios y despliegue.</p></article>
+          <article class="skill-card"><span>07</span><h3>Kivy</h3><p>Desarrollo de interfaces y aplicaciones con Python.</p></article>
+          <article class="skill-card"><span>08</span><h3>Oracle APEX</h3><p>Desarrollo de aplicaciones y gestión de datos.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="proyectos" class="section">
+      <div class="container">
+        <p class="section-tag">03 · PROYECTOS DESTACADOS</p>
+        <h2>Trabajos que respaldan mi perfil técnico.</h2>
+
+        <div class="projects">
+          <article class="project featured">
+            <div class="project-number">01</div>
+            <div class="project-content">
+              <span class="project-type">BACKEND · BASE DE DATOS · OFERTA B</span>
+              <h3>Sistema de gestión de videojuegos</h3>
+              <p>
+                Proyecto académico realizado con Oracle APEX y base de datos
+                Oracle. Incluye operaciones para insertar y administrar
+                videojuegos, auditoría y un trigger para registrar cambios.
+              </p>
+              <div class="tags"><span>Oracle APEX</span><span>SQL</span><span>PL/SQL</span><span>Base de datos</span></div>
+              <div class="project-actions">
+                <a href="#" class="text-link disabled-link">Repositorio pendiente ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-number">02</div>
+            <div class="project-content">
+              <span class="project-type">PYTHON · INTERFAZ</span>
+              <h3>Game Hub</h3>
+              <p>
+                Aplicación desarrollada con Python y Kivy que reúne distintos
+                juegos, incluyendo Truco, Blackjack y Chinchón, con lógica de
+                juego y posibilidades de interacción.
+              </p>
+              <div class="tags"><span>Python</span><span>Kivy</span><span>Programación</span></div>
+              <div class="project-actions">
+                <a href="#" class="text-link disabled-link">Repositorio pendiente ↗</a>
+              </div>
+            </div>
+          </article>
+
+          <article class="project">
+            <div class="project-number">03</div>
+            <div class="project-content">
+              <span class="project-type">DESARROLLO WEB · GESTIÓN</span>
+              <h3>Web de comunidad y administración</h3>
+              <p>
+                Sitio web desarrollado como parte del proyecto Spawn Point para
+                presentar la empresa, organizar información del proyecto y
+                administrar contenidos de la comunidad.
+              </p>
+              <div class="tags"><span>HTML</span><span>CSS</span><span>JavaScript</span><span>GitHub</span></div>
+              <div class="project-actions">
+                <a href="#" class="text-link disabled-link">Repositorio pendiente ↗</a>
+              </div>
+            </div>
+          </article>
+        </div>
+
+        <div class="evidence">
+          <div>
+            <p class="section-tag">EVIDENCIA TÉCNICA</p>
+            <h3>Proyecto de Backend / Base de Datos</h3>
+            <p>
+              Para demostrar los conocimientos vinculados con la Oferta B, este
+              portfolio documenta el sistema de gestión de videojuegos. En la
+              entrega final se pueden agregar capturas de la interfaz de Oracle
+              APEX, de la consola y del modelo de datos, junto con el enlace al
+              repositorio donde se encuentre el código fuente.
+            </p>
+          </div>
+          <div class="diagram-placeholder">
+            <span>MODELO DE DATOS</span>
+            <div class="db-box">VIDEOJUEGOS<br><small>ID · NOMBRE · GÉNERO</small></div>
+            <div class="db-line"></div>
+            <div class="db-box">AUDITORÍA<br><small>ID · ACCIÓN · FECHA</small></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="objetivos" class="section light">
+      <div class="container">
+        <p class="section-tag">04 · OBJETIVO PROFESIONAL</p>
+        <div class="objective">
+          <h2>Del aprendizaje técnico a la experiencia profesional.</h2>
+          <p>
+            Busco seguir desarrollando mis capacidades en programación y
+            herramientas digitales mediante proyectos prácticos. Mi formación
+            me permite trabajar con sitios estáticos, lógica de programación,
+            bases de datos, documentación técnica y herramientas de control de
+            versiones.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="section contact-section">
+      <div class="container contact">
+        <div>
+          <p class="section-tag">05 · CONTACTO</p>
+          <h2>¿Hablamos?</h2>
+          <p>Podés encontrar mis proyectos y código fuente en GitHub.</p>
+        </div>
+        <div class="contact-links">
+          <a href="https://github.com/" target="_blank" rel="noopener">GitHub ↗</a>
+          <a href="mailto:tuemail@example.com">Email ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <span>© <span id="year"></span> Ezequiel Anaya</span>
+      <span>Portfolio · IPET 247 · 2026</span>
+    </div>
+  </footer>
+
+  <script>
+// Menú responsive para dispositivos móviles.
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", () => {
+  navLinks.classList.toggle("active");
+});
+
+// Cierra el menú al seleccionar una sección.
+document.querySelectorAll(".nav-links a").forEach(link => {
+  link.addEventListener("click", () => {
+    navLinks.classList.remove("active");
+  });
+});
+
+// Actualiza automáticamente el año del footer.
+document.getElementById("year").textContent = new Date().getFullYear();
+
+  </script>
+</body>
+</html>
